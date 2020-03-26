@@ -22,12 +22,13 @@ export interface SelectProps<T> {
 }
 
 export function Select<T>(props: SelectProps<T>) {
-    return <div className='select-container'>
+    return <div className='select-desktop'>
         <SelectBare
             {...props}
             renderAdditionalNodes={
                 (isOpenState, setIsOpen) => (
                     <div
+                        className='select-toggle'
                         onClick={() => setIsOpen(!isOpenState)}>
                         &#9660;
                     </div>)

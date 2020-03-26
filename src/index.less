@@ -1,0 +1,23 @@
+
+
+#root {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 120px 120px 120px 120px auto;
+    grid-template-rows: auto 30px auto auto auto;
+
+    &>*{
+        border: 1px dashed gray;
+    }
+
+    #select-bare {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #select-desktop {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}

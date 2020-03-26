@@ -1,0 +1,47 @@
+.select-desktop {
+
+    display: grid;
+    grid-template-columns: auto 20px;
+    grid-template-rows: auto 0;
+
+    border: 1px solid black;
+    cursor: pointer;
+
+    .selected-item {
+        grid-row: 1;
+        grid-column: 1;
+
+        border: 1px solid black;
+        padding: 2px;
+    }
+
+    .select-toggle {
+        grid-row: 1;
+        grid-column: 2;
+
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    .selectable-items {
+        grid-row: 2;
+        grid-column: 1 / span 2;
+
+        background-color: white;
+        z-index: 5000;
+        overflow-x: visible;
+
+        .selectable-item {
+            &[data-item-is-seleceted="true"] {
+                background-color: lightgray;
+            }
+
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+
+            &:last-child {
+                border-bottom: 1px solid black;
+            }
+        }
+    }
+}
