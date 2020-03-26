@@ -1,14 +1,19 @@
-
-
 #root {
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-columns: 120px 120px 120px 120px auto;
+    grid-template-columns: 200px 200px 200px 200px 200px auto;
     grid-template-rows: auto 30px auto auto auto;
+    grid-column-gap: 10px;
 
     &>*{
         border: 1px dashed gray;
+    }
+
+    #select-bare-text {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
     }
 
     #select-bare {
@@ -16,8 +21,74 @@
         grid-row: 2;
     }
 
+    #select-desktop-text {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
+    }
+
     #select-desktop {
         grid-column: 2;
         grid-row: 2;
+    }
+
+    #select-desktop-upward-opening-text {
+        grid-column: 3;
+        grid-row: 3;
+        align-self: start;
+    }
+
+    #select-desktop-upward-opening {
+        grid-column: 3;
+        grid-row: 2;
+
+        // override internal positioning a bit:
+        // swap top and bottom rows, make items open up
+        .select-desktop {
+            //grid-template-rows: auto 0; by default
+            grid-template-rows: 0 auto;
+
+            .selected-item {
+                //grid-row: 1; by default
+                grid-row: 2;
+            }
+        
+            .select-toggle {
+                //grid-row: 1; by default
+                grid-row: 2;
+            }
+        
+            .selectable-items-container {
+        
+                //grid-row: 2; by default
+                grid-row: 1;
+        
+                .selectable-items {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    #select-pos-terminal-text {
+        grid-column: 4;
+        grid-row: 1;
+        align-self: end;
+    }
+
+    #select-pos-terminal {
+        grid-column: 4;
+        grid-row: 2;
+    }
+
+    #select-roller-text {
+        grid-column: 5;
+        grid-row: 3;
+    }
+
+    #select-roller {
+        grid-column: 5;
+        grid-row: 1/ span 2;
+        align-self: end;
     }
 }

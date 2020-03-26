@@ -34,15 +34,61 @@ export function Select<T>(props: SelectProps<T>) {
                     </div>)
             }
         />
+    </div>
+}
 
+export function SelectRoller<T>(props: SelectProps<T>) {
 
+    const selectedItemIndex = (props.selectedItem
+        && props.items.findIndex((i) => i === props.selectedItem))
+        ?? -1;
+
+    const indexsToRender = [-3, -2, -1, +1, +2, +3];
+
+    return <div className='select-roller'>
+        <SelectBare
+            {...props}
+            isOpen={false}
+            renderAdditionalNodes={
+                (isOpenState, setIsOpen) => (
+                    indexsToRender.map(index => {
+
+                        const item = props.items[selectedItemIndex + index];
+                        if (!item) {
+                            return undefined;
+                        }
+
+                        return <div
+                            className='select-roller-item'
+                            data-item-grid-index={4 + index}
+                            onClick={() => props.onSelect(item)}
+                        >
+                            {
+                                (props.renderSelectedItem?.(item))
+                                ?? (item as any).toString?.()
+                                ?? 'template missing'
+                            }
+                        </div>
+                    })
+
+                )
+            }
+        />
+    </div>
+}
+
+export function SelectForPOSTerminal<T>(props: SelectProps<T>) {
+    return <div className='select-pos-terminal'>
+        <SelectBare
+            {...props}
+        />
     </div>
 }
 
 export function SelectBare<T>(props: SelectProps<T>) {
 
     const [isOpenState, setIsOpen] = useState<boolean>(false);
-    const isOpen = props.isOpen || isOpenState;
+    const isOpen = props.isOpen ?? isOpenState;
     const selectedItem = props.selectedItem && props.items.find(x => x === props.selectedItem);
 
     const selectedItemNode: ReactNode =
@@ -52,13 +98,13 @@ export function SelectBare<T>(props: SelectProps<T>) {
         ?? "select...";
 
     useEffect(() => {
-        if (isOpenState) {
+        if (isOpen) {
             props.onOpen?.();
         } else {
             props.onClose?.();
         }
     },
-        [isOpenState])
+        [isOpen])
 
     return <>
         <div
@@ -71,39 +117,42 @@ export function SelectBare<T>(props: SelectProps<T>) {
 
         {
             isOpen &&
-            <div className='selectable-items'>
-                {
-                    props.allowSelectUndefind !== false &&
-                    <div
-                        key={'select-undefined__special__value'}
-                        className='selectable-item'
-                        data-item-index={-1}
-                        data-item-is-seleceted={selectedItem === undefined}
-                        onClick={() => {
-                            props.onSelect(undefined);
-                            setIsOpen(false);
-                        }}>
-                        &nbsp;
-                        </div>
-                }
-                {
-                    props.items.map((item, index) =>
+            <div className='selectable-items-container'>
+                {/* selectable-items-container is needed for positioning purposes */}
+                <div className='selectable-items'>
+                    {
+                        props.allowSelectUndefind !== false &&
                         <div
-                            key={props.getKey(item)}
+                            key={'select-undefined__special__value'}
                             className='selectable-item'
-                            data-item-index={index}
-                            data-item-is-seleceted={item === selectedItem}
+                            data-item-index={-1}
+                            data-item-is-seleceted={selectedItem === undefined}
                             onClick={() => {
-                                props.onSelect(item);
+                                props.onSelect(undefined);
                                 setIsOpen(false);
                             }}>
-                            {
-                                (props.renderSelectedItem?.(item))
-                                ?? (item as any).toString?.()
-                                ?? 'template missing'
-                            }
-                        </div>)
-                }
+                            &nbsp;
+                        </div>
+                    }
+                    {
+                        props.items.map((item, index) =>
+                            <div
+                                key={props.getKey(item)}
+                                className='selectable-item'
+                                data-item-index={index}
+                                data-item-is-seleceted={item === selectedItem}
+                                onClick={() => {
+                                    props.onSelect(item);
+                                    setIsOpen(false);
+                                }}>
+                                {
+                                    (props.renderSelectedItem?.(item))
+                                    ?? (item as any).toString?.()
+                                    ?? 'template missing'
+                                }
+                            </div>)
+                    }
+                </div>
             </div>
         }
 
