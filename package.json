@@ -1,7 +1,7 @@
 {
-  "name": "typescript-mobx-react-inversify-bundle-splitting",
+  "name": "customizable--reusable-components-with-css-grid",
   "version": "0.0.1",
-  "description": "typescript-mobx-react-inversify-bundle-splitting",
+  "description": "Project showcases how to make HTML components that are highly customizable and thus have maximum reusability with minimum pain.",
   "scripts": {
     "start": "node server.js"
   },
@@ -9,7 +9,12 @@
     "type": "git",
     "url": ""
   },
-  "keywords": [],
+  "keywords": [
+    "React",
+    "Component",
+    "reuse",
+    "CSS-grid"
+  ],
   "dependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
