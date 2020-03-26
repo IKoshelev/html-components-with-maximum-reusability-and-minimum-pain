@@ -1,0 +1,54 @@
+
+.select-pos-terminal {
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+
+    border: 1px solid black;
+    
+    .selected-item {
+        grid-row: 1;
+        grid-column: 1;
+        cursor: pointer;
+
+        border: 1px solid black;
+        padding: 2px;
+    }
+
+    .selectable-items-container {
+
+        .selectable-items {
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            
+            display: flex; 
+            flex-wrap: wrap; 
+            flex-direction: row;
+           
+            background-color: white;
+            cursor: pointer;
+          
+            .selectable-item {
+
+                width: 150px;
+                height: 150px;
+
+                &[data-item-is-seleceted="true"] {
+                    background-color: lightgray;
+                }
+
+                margin: 20px;
+                border: 2px solid black;
+
+                text-align: center;
+                vertical-align: middle;
+                line-height: 150px;
+            }
+        }
+    }
+}

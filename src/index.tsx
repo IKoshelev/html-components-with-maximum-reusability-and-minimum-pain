@@ -2,7 +2,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import "./index.less";
-import { SelectBare, Select, SelectForPOSTerminal, SelectRoller } from './Select';
+import { SelectBare } from './SelectBare';
+import { Select } from './Select';
+import { SelectForPOSTerminal } from './SelectForPOSTerminal';
+import { SelectRoller } from './SelectRoller';
 
 
 
@@ -26,8 +29,10 @@ function App() {
     return <>
 
         <div id='select-bare-text'>
-            Minimum possible dropdown - bare dom elements,
-            just add CSS :-)
+            Minimum possible dropdown - bare dom elements.
+            But! All following selects render the same
+            or almost the same flat DOM! They just have
+            custom CSS on top.
         </div>
 
         <div id='select-bare'>
